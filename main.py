@@ -1,13 +1,11 @@
+from datetime import datetime, timezone
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+@app.get("/post/{framework}")
+def read_posts(framework: str):
+    return {"posts":[{"titulo":f"Criando uma aplicação com {framework}", "data":datetime.now(timezone.utc)},
+                     {"titulo":f"Usando uma aplicação com {framework}", "data":datetime.now(timezone.utc)}]}
 
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str | None = None):
-    return {"item_id": item_id, "q": q}
