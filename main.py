@@ -36,6 +36,18 @@ class Post(BaseModel):
     publicado: bool = False
 
 
+class Foo(BaseModel):
+    bar: str
+
+
+# @app.get("/foobar/")
+@app.get("/foobar/", response_model=Foo)
+def foobar():
+    # def foobar() -> dict[str, str]:
+    # return {"bar":"foo", "mensagem":"oi"}
+    return {"bar": "foo", "mensagem": "oi"}
+
+
 @app.post("/posts/", status_code=status.HTTP_201_CREATED)
 def create_post(post: Post):
     fake_db.append(post.model_dump())
