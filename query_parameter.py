@@ -32,19 +32,3 @@ def read_posts(skip: int = 0, limit: int = len(fake_db), publicado: bool = True)
     return [
         post for post in fake_db[skip : skip + limit] if post["publicado"] is publicado
     ]
-
-
-@app.get("/posts/{framework}")
-def read_framework_posts(framework: str):
-    return {
-        "posts": [
-            {
-                "titulo": f"Criando uma aplicação com {framework}",
-                "data": datetime.now(timezone.utc),
-            },
-            {
-                "titulo": f"Usando uma aplicação com {framework}",
-                "data": datetime.now(timezone.utc),
-            },
-        ]
-    }
